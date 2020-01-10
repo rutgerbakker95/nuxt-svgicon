@@ -121,6 +121,5 @@ fabric.properties
 
 .idea/
 
-dist
 
 package-lock.json
