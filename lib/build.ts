@@ -76,9 +76,6 @@ export default function build(options: Options): Promise<void> {
         // get view box
         let viewBox = getViewBox(result);
 
-        // add pid attr, for css
-        data = addPid(data);
-
         // rename fill and stroke. (It can restore in vue-svgicon)
         if(options.renameStyles) {
           data = renameStyle(data);
@@ -238,17 +235,6 @@ function getViewBox(svgoResult: OptimizedSvg) {
   }
 
   return viewBox;
-}
-
-// add pid attr, for css
-function addPid(content: string) {
-  let shapeReg = /<(path|rect|circle|polygon|line|polyline|ellipse)\s/gi;
-  let id = 0;
-  content = content.replace(shapeReg, function(match: string) {
-    return match + `pid="${id++}" `;
-  });
-
-  return content;
 }
 
 // rename fill and stroke. (It can restore in vue-svgicon)
